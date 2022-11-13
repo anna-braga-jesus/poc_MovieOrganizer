@@ -4,14 +4,14 @@ exports.middleware = void 0;
 const user_repository_1 = require("../repositories/user-repository");
 class Middleware {
     async verifyUserByEmail(req, res, next) {
-        const email = String(req.headers.email);
+        const email = String(req.body.email);
         const saved = await user_repository_1.userRepository.getUserByEmail(email);
-        if (saved) {
+        if (!saved) {
             res.locals.saved = saved;
             next();
         }
         else {
-            return false;
+            return res.status(409).send({ message: "E-mail already registered!" });
         }
     }
 }
