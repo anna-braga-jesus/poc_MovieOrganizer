@@ -17,7 +17,9 @@ Movie organizer is a web browser application with which you can manage every mov
 - Run the dump.sql file;
 - Run the back-end in a development environment:
 ```sh
+    npm start 
     npm run dev
+    tsc -w
 ```
 
 ## Building and starting for production
