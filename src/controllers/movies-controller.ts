@@ -42,8 +42,15 @@ class MovieController {
     async deleteMovies(req: Request, res: Response){
         const user: IUser = res.locals.saved;
         const id = parseInt(req.params.id);
-        await movieRepository.deleteMovieByIdMovie(id);
-        res.send({message: 'Successfully deleted movie!'})
+        const movieInfo: boolean | Movie = await movieRepository.getMovieById(id);
+        if (!movieInfo) {
+            return res.send({ message: 'Movie not found!'});
+        }else{
+            await movieRepository.deleteMovieByIdMovie(id);
+            res.send({message: 'Successfully deleted movie!'})
+
+        }
+
     }
 }
 
