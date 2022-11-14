@@ -25,7 +25,7 @@ class MovieController {
             })
         }
         const resultado = await movieRepository.insertUnique(newMovie);
-        return res.send(`Movie inserted ${resultado.rowCount}`);
+        return res.status(201).send(`Movie inserted ${resultado.rowCount}`);
     }
     async movieWatched(req: Request, res: Response){
         const id = parseInt(req.params.id);
